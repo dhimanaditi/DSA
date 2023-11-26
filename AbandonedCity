@@ -1,0 +1,40 @@
+// Problem 1393
+
+import java.util.*;
+class Main{
+    public static void main(String[] args){
+        Scanner sc = new Scanner (System.in);
+        int tc = sc.nextInt();
+        while(tc>0){
+            int n = sc.nextInt();
+            int k = sc.nextInt();
+            int arr[] = new int[n];
+            for(int i=0;i<n;i++){
+                arr[i]=sc.nextInt();
+            }
+            System.out.println(findLen(arr,n,k));
+            tc--;
+        }
+    }
+    static int findLen(int[] arr, int n, int k){
+        int l=0;
+        int r=0;
+        int sum=0;
+        int min = Integer.MAX_VALUE;
+        while(r<n){
+            sum+=arr[r];
+            while(sum>=k && l<=r){
+                min=Math.min(min,r-l+1);
+                sum-=arr[l];
+                l++;
+            }
+            r++;
+        }
+        if(min == Integer.MAX_VALUE)
+        return -1;
+        else{
+           return min;
+        }
+    }
+    
+}
